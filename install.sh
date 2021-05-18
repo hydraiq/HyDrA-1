@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd $HOME/HYDRA
+cd $HOME/Hydra
 rm -rf $HOME/.telegram-cli
 install(){
 apt install dnsutils
