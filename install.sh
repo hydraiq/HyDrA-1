@@ -8,9 +8,9 @@ chmod +x HD
 ./HD
 }
 get() {
-rm -fr Hydra.lua
+rm -fr HYDRA.lua
 rm -fr sudo.lua
-wget "https://raw.githubusercontent.com/Hydraqi/Hydra/Hydra/Hydra.lua"
+wget "https://raw.githubusercontent.com/Hydraqi/Hydra/Hydra/HYDRA.lua"
 lua start.lua
 }
 installall(){
@@ -48,6 +48,6 @@ fi
 installall
 cd ..
 rm -rf luarocks*
-cd Hydra
+cd HYDRA
 rm -rf luarocks*
 lua start.lua
