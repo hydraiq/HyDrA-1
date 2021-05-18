@@ -41,7 +41,7 @@ end
 else
 print('\27[0;35m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ التوكن ارسل لي التوكن الان')
 end 
-os.execute('lua HYDRA.lua')
+os.execute('lua Hydra.lua')
 end
 if not database:get(id_server..":SUDO:ID") then 
 io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\27[0;33;49m') 
@@ -52,7 +52,7 @@ database:set(id_server..":SUDO:ID",SUDOID)
 else 
 print('\27[0;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره') 
 end  
-os.execute('lua HYDRA.lua') 
+os.execute('lua Hydra.lua') 
 end
 if not database:get(id_server..":SUDO:USERNAME") then
 io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
@@ -63,7 +63,7 @@ database:set(id_server..":SUDO:USERNAME",'@'..SUDOUSERNAME)
 else
 print('\n\27[1;34m لم يتم حفظ معرف المطور :')
 end 
-os.execute('lua HYDRA.lua')
+os.execute('lua Hydra.lua')
 end
 local create_config_auto = function()
 config = {
@@ -78,10 +78,10 @@ token = database:get(id_server..":token")
 SUDO = database:get(id_server..":SUDO:ID")
 install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
 print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
-file = io.open("HYDRA", "w")  
+file = io.open("Hydra", "w")  
 file:write([[
 #!/usr/bin/env bash
-cd $HOME/HYDRA
+cd $HOME/Hydra
 token="]]..database:get(id_server..":token")..[["
 while(true) do
 rm -fr ../.telegram-cli
@@ -101,7 +101,7 @@ echo -e "\033[38;5;208m"
 echo -e "                                                  "
 echo -e "\033[0;00m"
 echo -e "\e[36m"
-./tg -s ./HYDRA.lua -p PROFILE --bot=$token
+./tg -s ./Hydra.lua -p PROFILE --bot=$token
 done
 ]])  
 file:close()  
@@ -111,8 +111,8 @@ file:write([[
 cd $HOME/HYDRA
 while(true) do
 rm -fr ../.telegram-cli
-screen -S HYDRA -X kill
-screen -S HYDRA ./HYDRA
+screen -S Hydra -X kill
+screen -S Hydra ./Hydra
 done
 ]])  
 file:close() 
@@ -168,7 +168,7 @@ io.popen("mkdir File_Bot")
 io.popen("cd File_Bot && rm -rf commands.lua.1") 
 io.popen("cd File_Bot && rm -rf commands.lua.2") 
 io.popen("cd File_Bot && rm -rf commands.lua.3") 
-io.popen("cd File_Bot && wget https://raw.githubusercontent.com/HYDRATEAM/Files_HYDRA/master/File_Bot/commands.lua") 
+io.popen("cd File_Bot && wget https://raw.githubusercontent.com/HydraTEAM/Files_Hydra/master/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -186,12 +186,12 @@ function SudoBot(msg)
 local BOYKA = false  
 for k,v in pairs(sudo_users) do  
 if tonumber(msg.sender_user_id_) == tonumber(v) then  
-BOYKA = true  
+Hydra = true  
 end  
 end  
 return HYDRA  
 end 
-function DevHYDRA(msg) 
+function DevHydra(msg) 
 local hash = database:sismember(bot_id.."DEV:Sudo:T", msg.sender_user_id_) 
 if hash or SudoBot(msg) then  
 return true  
