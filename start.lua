@@ -1,4 +1,4 @@
-GithubUser = "BOYKA-DeV"
+GithubUser = "hydraqi"
 redis=dofile("./File/redis.lua").connect("127.0.0.1", 6379)
 serpent=dofile("./File/serpent.lua")
 JSON=dofile("./File/dkjson.lua")
@@ -17,9 +17,9 @@ local Create_Info = function(Token,Sudo)
 local Write_Info_Sudo = io.open("sudo.lua", 'w')
 Write_Info_Sudo:write([[
 
-s = "BOYKA-DeV"
+s = "hydraqi"
 
-q = "BoykA"
+q = "Hydra"
 
 token = "]]..Token..[["
 
@@ -81,24 +81,24 @@ local t = json:decode(https.request('https://boyka-api.ml/index.php?n=by&id='..r
 local RunBot = io.open("Run", 'w')
 RunBot:write([[
 #!/usr/bin/env bash
-cd $HOME/BoykA
+cd $HOME/Hydra
 token="]]..redis:get(Server_Done.."Token_Write")..[["
 rm -fr BoykA.lua
-wget "https://raw.githubusercontent.com/BOYKA-DeV/BoykA/BoykA/BoykA.lua"
+wget "https://raw.githubusercontent.com/hydraqi/Hydra/Hydra/Hydra.lua"
 while(true) do
 rm -fr ../.telegram-cli
-./tg -s ./BoykA.lua -p PROFILE --bot=$token
+./tg -s ./Hydra.lua -p PROFILE --bot=$token
 done
 ]])
 RunBot:close()
 local RunTs = io.open("BA", 'w')
 RunTs:write([[
 #!/usr/bin/env bash
-cd $HOME/BoykA
+cd $HOME/Hydra
 while(true) do
 rm -fr ../.telegram-cli
-screen -S BoykA -X kill
-screen -S BoykA ./Run
+screen -S Hydra -X kill
+screen -S Hydra ./Run
 done
 ]])
 RunTs:close()
