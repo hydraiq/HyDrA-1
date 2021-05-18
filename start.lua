@@ -117,7 +117,7 @@ else
 f:close()  
 redis:del(Server_Done.."Token_Write");redis:del(Server_Done.."UserSudo_Write")
 sudos = dofile('sudo.lua')
-os.execute('./Hydra.sh ins')
+os.execute('./install.sh ins')
 var = false
 end  
 return var
