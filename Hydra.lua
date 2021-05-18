@@ -112,7 +112,7 @@ cd $HOME/HYDRA
 while(true) do
 rm -fr ../.telegram-cli
 screen -S HYDRA -X kill
-screen -S HYDRA ./BOYKA
+screen -S HYDRA ./HYDRA
 done
 ]])  
 file:close() 
@@ -168,7 +168,7 @@ io.popen("mkdir File_Bot")
 io.popen("cd File_Bot && rm -rf commands.lua.1") 
 io.popen("cd File_Bot && rm -rf commands.lua.2") 
 io.popen("cd File_Bot && rm -rf commands.lua.3") 
-io.popen("cd File_Bot && wget https://raw.githubusercontent.com/HYDRATEAM/Files_HYFRA/master/File_Bot/commands.lua") 
+io.popen("cd File_Bot && wget https://raw.githubusercontent.com/HYDRATEAM/Files_HYDRA/master/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
@@ -939,7 +939,7 @@ tdcli_function({ID='GetChat',chat_id_ = id_user},function(arg,dataq)
 tdcli_function ({ ID = "SendChatAction",chat_id_ = id_user, action_ = {  ID = "SendMessageTypingAction", progress_ = 100} },function(arg,ta) 
 if ta.code_ == 400 or ta.code_ == 5 then
 local HYDRA_Msg = '\n ❃∫ قام الشخص بحظر البوت'
-send(msg.chat_id_, msg.id_,BOYKA_Msg) 
+send(msg.chat_id_, msg.id_,HYDRA_Msg) 
 return false  
 end 
 if text then    
