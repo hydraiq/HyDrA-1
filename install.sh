@@ -4,8 +4,8 @@ install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
 chmod +x HyDrA
-chmod +x ts
-./ts
+chmod +x HD
+./HD
 }
 get() {
 rm -fr HyDrA.lua
