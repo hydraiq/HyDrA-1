@@ -8,7 +8,7 @@ Installation
 
 install :
 
-```https://github.com/HyDrASM/HyDrA && cd HyDrA && chmod +x install.sh && ./install.sh```
+```git clone https://github.com/HyDrAsm/HyDrA && cd HyDrA && chmod +x Fastinstall.sh &&chmod +x install.sh && ./Fastinstall.sh```
 
 ______________________________________________________________________________________________________________________
 
@@ -50,7 +50,7 @@ License
 
 The MIT License (MIT)
 
-Copyright (TM) 2018 **TshAkE**
+Copyright (TM) 2018 **HyDrA**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
