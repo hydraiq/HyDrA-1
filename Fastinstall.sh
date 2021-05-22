@@ -9,9 +9,9 @@ chmod +x ts
 ./ts
 }
 get() {
-rm -fr HyDrA.lua
+rm -fr Hydra.lua
 rm -fr sudo.lua
-wget "https://raw.githubusercontent.com/HyDrASM/HyDrA/master/HyDrA.lua"
+wget "https://raw.githubusercontent.com/HyDrASM/HyDrA/master/Hydra.lua"
 lua start.lua
 }
 installall(){
