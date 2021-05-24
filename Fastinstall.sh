@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-cd $HOME/HyDrA
+cd $HOME/Hydra
 install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x HyDrA
+chmod +x Hydra
 chmod +x install.sh
 chmod +x HD
 ./HD
@@ -48,7 +48,7 @@ fi
 installall
 cd ..
 rm -rf luarocks*
-cd HyDrA
+cd Hydra
 rm -rf luarocks*
 lua start.lua
 
