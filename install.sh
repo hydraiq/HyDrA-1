@@ -3,14 +3,14 @@ cd $HOME/HyDrA
 install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x Hydra
+chmod +x HyDrA
 chmod +x ts
 ./ts
 }
 get() {
 rm -fr HyDrA.lua
 rm -fr sudo.lua
-wget "https://raw.githubusercontent.com/HyDrASM/HyDrA/master/HyDrA.lua"
+wget "https://raw.githubusercontent.com/HyDrAQI/HyDrA/master/HyDrA.lua"
 lua start.lua
 }
 installall(){
