@@ -8,7 +8,7 @@ Installation
 
 install :
 
-```git clone https://github.com/HyDrASM/HyDrA && cd HyDrA && chmod +x Fastinstall.sh &&chmod +x install.sh && ./Fastinstall.sh```
+```git clone https://github.com/HyDrAQI/HyDrA && cd HyDrA && chmod +x Fastinstall.sh &&chmod +x install.sh && ./Fastinstall.sh```
 
 ______________________________________________________________________________________________________________________
 
